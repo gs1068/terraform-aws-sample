@@ -23,14 +23,6 @@ create_bucket () {
     aws s3api put-public-access-block --bucket terraform-sample-${S3_BUCKET_ENV}-tfstate-step3 --public-access-block-configuration '{"BlockPublicAcls": true, "IgnorePublicAcls": true, "BlockPublicPolicy": true, "RestrictPublicBuckets": true}'
 }
 
-# [source set_aws_profile.sh] を実行し、デプロイ先を指定しているか確認
-if [ ${AWS_PROFILE} = 'terraform-sample' -o ${AWS_PROFILE} = 'terraform-sample-prod' ]; then
-    :
-else
-    echo '[source set_aws_profile.sh] を実行し、デプロイ先を指定して下さい。'
-    exit 1
-fi
-
 echo 'デプロイ先：ステージング環境 or 本番環境を入力してください。'
 read -p 'ex) stage/prod:' ENV
 
@@ -44,7 +36,7 @@ elif [ ${ENV} = 'prod' ]; then
     create_bucket
     echo '----- terraform-sample-prod 全S3バケット作成完了 -----'
 else
-    echo '[source set_aws_profile.sh] を実行し、デプロイ先を指定して下さい。'
+    echo 'デプロイ先を指定して下さい。'
 fi
 
 set +eu

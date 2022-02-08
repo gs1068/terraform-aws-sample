@@ -18,17 +18,6 @@ terraform_destroy_prod () {
     cd ..
 }
 
-# [source set_aws_profile.sh] を実行し、デプロイ先を指定しているか確認
-if [ ${AWS_PROFILE} = 'terraform-sample' -o ${AWS_PROFILE} = 'terraform-sample-prod' ]; then
-    :
-else
-    echo '[source set_aws_profile.sh] を実行し、デプロイ先を指定して下さい。'
-    exit 1
-fi
-
-
-
-
 echo 'デプロイ先：ステージング環境 or 本番環境を入力してください。'
 read -p 'ex) stage/prod:' ENV
 
