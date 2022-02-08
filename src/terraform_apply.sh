@@ -4,17 +4,19 @@ set -eu
 # ステージング環境 and 本番環境でTerraform applyコマンドの定義
 terraform_apply_stage () {
     cd ./${DEPLOY}
-    # terraform fmt
-    # terraform init -reconfigure -backend-config=stage.tfbackend
-    # terraform apply -var-file=stage.tfvars
+    terraform workspace select stage
+    terraform fmt
+    terraform init
+    terraform apply -var-file=stage.tfvars
     cd ..
 }
 
 terraform_apply_prod () {
     cd ./${DEPLOY}
-    # terraform fmt
-    # terraform init -reconfigure -backend-config=prod.tfbackend
-    # terraform apply -var-file=prod.tfvars
+    terraform workspace select prod
+    terraform fmt
+    terraform init
+    terraform apply -var-file=prod.tfvars
     cd ..
 }
 
@@ -25,7 +27,6 @@ read -p 'ex) stage/prod:' ENV
 if [ ${ENV} = 'stage' ]; then
     echo 'AWSリソース構築：step1 or step2 or step3を入力してください。'
     read -p 'ex) step1/step2/step3:' DEPLOY
-
     # step1 をデプロイ
     if [ ${DEPLOY} = 'step1' ]; then
         terraform_apply_stage
@@ -44,7 +45,6 @@ if [ ${ENV} = 'stage' ]; then
 
 
 elif [ ${ENV} = 'prod' ]; then
-    # git checkout v1.0.0/${ENV}
     echo 'AWSリソース構築：step1 or step2 or step3を入力してください。'
     read -p 'ex) step1/step2/step3:' DEPLOY
 

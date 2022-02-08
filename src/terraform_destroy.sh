@@ -4,17 +4,19 @@ set -eu
 # ステージング環境 and 本番環境でTerraform destroyコマンドの定義
 terraform_destroy_stage () {
     cd ./${DEPLOY}
-    # terraform fmt
-    # terraform init -reconfigure -backend-config=stage.tfbackend
-    # terraform destroy -var-file=stage.tfvars
+    terraform fmt
+    terraform workspace select stage
+    terraform init
+    terraform destroy -var-file=stage.tfvars
     cd ..
 }
 
 terraform_destroy_prod () {
     cd ./${DEPLOY}
-    # terraform fmt
-    # terraform init -reconfigure -backend-config=prod.tfbackend
-    # terraform destroy -var-file=prod.tfvars
+    terraform fmt
+    terraform workspace select prod
+    terraform init
+    terraform destroy -var-file=prod.tfvars
     cd ..
 }
 
