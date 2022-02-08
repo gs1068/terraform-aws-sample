@@ -16,9 +16,6 @@ ENV PS1="awscliv2> "
 RUN curl "https://releases.hashicorp.com/terraform/0.15.0/terraform_0.15.0_linux_amd64.zip" -o "terraform.zip" && \
     unzip ./terraform.zip -d /usr/local/bin/
 
-# # create workspace.
-# COPY ./src /infra/terraform
-
 # initialize command.
 ARG AWS_ACCESS_KEY_ID
 ARG AWS_SECRET_ACCESS_KEY
