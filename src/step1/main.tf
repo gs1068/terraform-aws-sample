@@ -1,3 +1,5 @@
+variable "region" { default = "ap-northeast-1" }
+
 terraform {
   backend "s3" {
     bucket = "terraform-sample-step1"
@@ -7,10 +9,5 @@ terraform {
 }
 # AWSプロバイダーの設定
 provider "aws" {
-  region = "ap-northeast-1"
-}
-
-# CIDRが10.0.0.0/16のVPCを作成
-resource "aws_vpc" "example" {
-  cidr_block = "10.0.0.0/16"
+  region = var.region
 }
