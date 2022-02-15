@@ -1,7 +1,6 @@
 variable "vpc_cidr_block" {}
-variable "vpc_name" {}
 variable "region" {}
-variable "ENV" {}
+variable "service_name" {}
 # サブネットのIPアドレスを設定
 variable "subnet_public_a" {
   default = "10.0.10.0/24"

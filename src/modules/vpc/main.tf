@@ -10,7 +10,7 @@ resource "aws_vpc" "main" {
   enable_dns_support   = true
   # VPCの名前
   tags = {
-    Name = "${var.vpc_name}"
+    Name = "${var.service_name}-${terraform.workspace}"
   }
 }
 
@@ -18,7 +18,7 @@ resource "aws_vpc" "main" {
 resource "aws_internet_gateway" "main" {
   vpc_id   = aws_vpc.main.id
   tags = {
-    Name = "joicon-internet-gateway-${var.ENV}"
+    Name = "${var.service_name}-igw-${terraform.workspace}"
   }
 }
 
@@ -30,7 +30,7 @@ resource "aws_subnet" "public_a" {
   # trueにするとインスタンスにパブリックIPアドレスを自動的に割り当ててくれる
   map_public_ip_on_launch = true
   tags = {
-    Name = "public_a_${var.ENV}"
+    Name = "public_a_${terraform.workspace}"
   }
 }
 
@@ -41,7 +41,7 @@ resource "aws_subnet" "public_c" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "public_c_${var.ENV}"
+    Name = "public_c_${terraform.workspace}"
   }
 }
 
@@ -52,7 +52,7 @@ resource "aws_subnet" "public_d" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "public_d_${var.ENV}"
+    Name = "public_d_${terraform.workspace}"
   }
 }
 
@@ -64,7 +64,7 @@ resource "aws_subnet" "private_a" {
   vpc_id   = aws_vpc.main.id
 
   tags = {
-    Name = "private_a_${var.ENV}"
+    Name = "private_a_${terraform.workspace}"
   }
 }
 
@@ -74,7 +74,7 @@ resource "aws_subnet" "private_c" {
   vpc_id   = aws_vpc.main.id
 
   tags = {
-    Name = "private_c_${var.ENV}"
+    Name = "private_c_${terraform.workspace}"
   }
 }
 
@@ -84,7 +84,7 @@ resource "aws_subnet" "private_d" {
   vpc_id   = aws_vpc.main.id
 
   tags = {
-    Name = "private_d_${var.ENV}"
+    Name = "private_d_${terraform.workspace}"
   }
 }
 
@@ -92,7 +92,7 @@ resource "aws_subnet" "private_d" {
 resource "aws_route_table" "public-route" {
   vpc_id   = aws_vpc.main.id
   tags = {
-    Name = "public-route-table-${var.ENV}"
+    Name = "public-route-table-${terraform.workspace}"
   }
 }
 
