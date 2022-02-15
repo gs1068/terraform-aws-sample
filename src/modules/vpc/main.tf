@@ -17,7 +17,6 @@ resource "aws_vpc" "main" {
 #IGW
 resource "aws_internet_gateway" "main" {
   vpc_id   = aws_vpc.main.id
-
   tags = {
     Name = "joicon-internet-gateway-${var.ENV}"
   }
@@ -30,7 +29,6 @@ resource "aws_subnet" "public_a" {
   vpc_id   = aws_vpc.main.id
   # trueにするとインスタンスにパブリックIPアドレスを自動的に割り当ててくれる
   map_public_ip_on_launch = true
-
   tags = {
     Name = "public_a_${var.ENV}"
   }
@@ -44,6 +42,17 @@ resource "aws_subnet" "public_c" {
 
   tags = {
     Name = "public_c_${var.ENV}"
+  }
+}
+
+resource "aws_subnet" "public_d" {
+  availability_zone = "${var.region}d"
+  cidr_block        = "${var.subnet_public_d}"
+  vpc_id   = aws_vpc.main.id
+  map_public_ip_on_launch = true
+
+  tags = {
+    Name = "public_d_${var.ENV}"
   }
 }
 
@@ -69,11 +78,21 @@ resource "aws_subnet" "private_c" {
   }
 }
 
+resource "aws_subnet" "private_d" {
+  availability_zone = "${var.region}d"
+  cidr_block        = "${var.subnet_private_d}"
+  vpc_id   = aws_vpc.main.id
+
+  tags = {
+    Name = "private_d_${var.ENV}"
+  }
+}
+
 # route table
 resource "aws_route_table" "public-route" {
   vpc_id   = aws_vpc.main.id
   tags = {
-    Name = "public-route"
+    Name = "public-route-table-${var.ENV}"
   }
 }
 
@@ -90,5 +109,10 @@ resource "aws_route_table_association" "public_a" {
 
 resource "aws_route_table_association" "public_c" {
     subnet_id = "${aws_subnet.public_c.id}"
+    route_table_id = "${aws_route_table.public-route.id}"
+}
+
+resource "aws_route_table_association" "public_d" {
+    subnet_id = "${aws_subnet.public_d.id}"
     route_table_id = "${aws_route_table.public-route.id}"
 }
