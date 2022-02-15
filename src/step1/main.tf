@@ -1,4 +1,5 @@
 variable "region" { default = "ap-northeast-1" }
+variable "service_name" {}
 
 terraform {
   backend "s3" {
