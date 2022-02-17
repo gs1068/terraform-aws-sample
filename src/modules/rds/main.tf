@@ -23,7 +23,7 @@ resource "aws_rds_cluster" "this" {
 }
 
 resource "aws_rds_cluster_instance" "this" {
-  identifier           = "${terraform.workspace}"
+  identifier           = "${terraform.workspace}-instance"
   cluster_identifier   = "${aws_rds_cluster.this.id}"
   engine               = "aurora-mysql"
   instance_class       = "db.t3.small"
