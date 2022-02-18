@@ -3,7 +3,7 @@ variable "service_name" {}
 
 terraform {
   backend "s3" {
-    bucket = "terraform-sample-step2"
+    bucket = "terraform-aws-sample-step2"
     key    = "terraform.tfstate"
     region = "ap-northeast-1"
   }

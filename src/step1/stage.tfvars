@@ -1,1 +1,1 @@
-service_name = "terraform-sample"
+service_name = "terraform-aws-sample"
