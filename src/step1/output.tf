@@ -17,3 +17,11 @@ output "private_subnet_c_id" {
 output "private_subnet_d_id" {
   value = module.vpc.private_subnet_d_id
 }
+
+output "eks_master" {
+  value = module.iam_role.iam_role_eks_master
+}
+
+output "eks_node" {
+  value = module.iam_role.iam_role_eks_node
+}
