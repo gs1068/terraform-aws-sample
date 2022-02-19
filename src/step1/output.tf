@@ -6,6 +6,14 @@ output "sg_rds_id" {
   value = module.security_group.sg_rds_id
 }
 
+output "sg_eks_master_id" {
+  value = module.security_group.sg_eks_master_id
+}
+
+output "sg_eks_node_id" {
+  value = module.security_group.sg_eks_node_id
+}
+
 output "private_subnet_a_id" {
   value = module.vpc.private_subnet_a_id
 }
