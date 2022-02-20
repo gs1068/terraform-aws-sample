@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 
 # install command.
-RUN apt-get update && apt-get install -y less vim unzip curl
+RUN apt-get update && apt-get install -y less vim unzip curl && apt-get install git -y
 
 # install awscli
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-2.0.30.zip" -o "awscliv2.zip" && \
