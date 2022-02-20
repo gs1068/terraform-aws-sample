@@ -1,4 +1,4 @@
-module "lb" {
+module "alb" {
   source             = "./../modules/alb"
   vpc_id             = module.vpc.vpc_id
   service_name       = var.service_name
