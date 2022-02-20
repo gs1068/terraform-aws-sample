@@ -12,8 +12,8 @@ resource "aws_alb" "alb_eks" {
   enable_deletion_protection = false
 }
 
-// EC2用ターゲットグループの作成
-resource "aws_alb_target_group" "alb_http_eks" {
+// EKS用ターゲットグループの作成
+resource "aws_alb_target_group" "alb_eks" {
   name     = "${terraform.workspace}-tg-http"
   port     = 8080
   protocol = "HTTP"
@@ -23,7 +23,7 @@ resource "aws_alb_target_group" "alb_http_eks" {
   health_check {
     interval            = 60
     path                = "/"
-    port                = 80  
+    port                = 8080  
     protocol            = "HTTP"
     timeout             = 20
     unhealthy_threshold = 4
@@ -36,7 +36,7 @@ resource "aws_alb_listener" "alb_http" {
   port              = "80"
   protocol          = "HTTP"
   default_action {
-    target_group_arn = aws_alb_target_group.alb_http_eks.arn
+    target_group_arn = aws_alb_target_group.alb_eks.arn
     type             = "forward"
   }
 }

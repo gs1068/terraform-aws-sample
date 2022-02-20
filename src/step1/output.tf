@@ -26,10 +26,14 @@ output "private_subnet_d_id" {
   value = module.vpc.private_subnet_d_id
 }
 
-output "eks_master" {
+output "eks_master_iam_role" {
   value = module.iam_role.iam_role_eks_master
 }
 
-output "eks_node" {
+output "eks_node_iam_role" {
   value = module.iam_role.iam_role_eks_node
+}
+
+output "eks_alb_tg" {
+  value = module.alb.eks_target_group_arn
 }
