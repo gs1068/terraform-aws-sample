@@ -15,21 +15,27 @@ resource "aws_alb" "alb_eks" {
 // EKS用ターゲットグループの作成
 resource "aws_alb_target_group" "alb_eks" {
   name     = "${terraform.workspace}-tg-http"
-  port     = 8080
+  port     = 30080
   protocol = "HTTP"
-  vpc_id   = "${var.vpc_id}"
-  target_type = "ip"
-
-  health_check {
-    interval            = 60
-    path                = "/"
-    port                = 8080  
-    protocol            = "HTTP"
-    timeout             = 20
-    unhealthy_threshold = 4
-    matcher             = 200
-  }
+  vpc_id   = var.vpc_id
 }
+# resource "aws_alb_target_group" "alb_eks" {
+#   name     = "${terraform.workspace}-tg-http"
+#   port     = 8080
+#   protocol = "HTTP"
+#   vpc_id   = "${var.vpc_id}"
+#   target_type = "ip"
+
+#   health_check {
+#     interval            = 60
+#     path                = "/"
+#     port                = 8080  
+#     protocol            = "HTTP"
+#     timeout             = 20
+#     unhealthy_threshold = 4
+#     matcher             = 200
+#   }
+# }
 
 resource "aws_alb_listener" "alb_http" {
   load_balancer_arn = aws_alb.alb_eks.arn
