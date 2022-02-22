@@ -9,6 +9,6 @@ module "main" {
 
   worker_groups = [{
     root_volume_type = "gp2"
-    target_group_arns = [var.target_group_arns]
+    target_group_arns = ["${var.target_group_arns}"]
   }]
 }
