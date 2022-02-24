@@ -9,6 +9,13 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-2.0.30.zip" -o "a
     ./aws/install && \
     bash -c 'echo complete -C '/usr/bin/aws_completer' aws  >> $HOME/.bashrc'
 
+# install kubectl
+RUN curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" && \
+    curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.23.0/bin/linux/amd64/kubectl && \
+    chmod +x ./kubectl && \
+    sudo mv ./kubectl /usr/local/bin/kubectl
+
+
 ENV PS1="awscliv2> "
 
 # install terraform.
