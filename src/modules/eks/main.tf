@@ -8,6 +8,7 @@ module "main" {
   vpc_id          = var.vpc_id
 
   worker_groups = [{
+  # worker_groups_launch_template = [{
     root_volume_type = "gp2"
     target_group_arns = ["${var.target_group_arns}"]
   }]
