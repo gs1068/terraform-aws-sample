@@ -12,4 +12,7 @@ module "main" {
     root_volume_type = "gp2"
     target_group_arns = ["${var.target_group_arns}"]
   }]
+
+  write_kubeconfig   = true
+  config_output_path = pathexpand("~/.kube/config")
 }
