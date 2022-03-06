@@ -7,11 +7,12 @@ module "main" {
   subnets         = var.subnet_ids
   vpc_id          = var.vpc_id
 
-  worker_groups = [{
-  # worker_groups_launch_template = [{
-    root_volume_type = "gp2"
-    target_group_arns = ["${var.target_group_arns}"]
-  }]
+  node_groups = {
+    example = {
+      target_group_arns = ["${var.target_group_arns}"]
+      subnets         = var.subnet_ids
+    }
+  }
 
   write_kubeconfig   = true
   config_output_path = pathexpand("~/.kube/config")

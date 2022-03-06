@@ -39,3 +39,20 @@ $ kubectl get all -A
   - ワーカーノードを管理するノード
 - Pod
   - Kubenetes で実行できるアプリケーションの最小単位
+- ワークロード
+  - kubenetes で実行中のアプリケーション
+    - ワークロードリソース
+      - Deployment(ReplicaSet を管理する)
+        1. 新しい ReplicaSet を作成
+        2. 新しい ReplicaSet 上でレプリカ数（Pod 数）を徐々に増やす
+        3. 古い ReplicaSet 上のレプリカ数(Pod 数)を徐々に減らす
+        4. (2,3 を繰り返す)
+        5. 古い ReplicaSet はレプリカ数は０で保持する
+      - ReplicaSet(Pod を管理する)
+        - Pod のレプリカを作成し、指定した数の Pod を維持し続けるリソース
+      - StatefulSet
+      - DaemonSet
+      - Job と CronJob
+
+参考資料
+https://pages.awscloud.com/rs/112-TZM-766/images/00_AWS%E8%90%BD%E6%B0%B4%E3%81%95%E3%82%93_%E8%B3%87%E6%96%99.pdf
