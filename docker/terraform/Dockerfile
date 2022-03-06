@@ -26,6 +26,6 @@ RUN curl "https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_linux
 # initialize command.
 ARG AWS_ACCESS_KEY_ID
 ARG AWS_SECRET_ACCESS_KEY
-COPY ./docker/.aws /infra/.aws
-COPY ./docker/init.sh /infra/init.sh
+COPY ./docker/terraform/.aws /infra/.aws
+COPY ./docker/terraform/init.sh /infra/init.sh
 RUN chmod +x /infra/init.sh && /infra/init.sh
