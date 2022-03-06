@@ -11,16 +11,15 @@ services:
       - ./src:/infra/terraform
     build:
       context: ./
-      dockerfile: docker/terraform/Dockerfile
+      dockerfile: docker/Dockerfile
       args:
         AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
         AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
 
   go:
     build:
-      context: ./
-      target: local
-      dockerfile: docker/go/Dockerfile
+      context: ./go
+      dockerfile: Dockerfile
     ports:
       - 8888:8888
     tty: true

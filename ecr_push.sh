@@ -8,7 +8,7 @@ read -p 'ex) stage/prod:' ENV
 
 if [ ${ENV} = 'stage' ]; then
 
-    docker build -t terraform-aws-sample-${ENV} -f docker/go/Dockerfile .
+    docker build -t terraform-aws-sample-${ENV} -f go/Dockerfile .
 
     export AWS_PROFILE=terraform-sample
 
@@ -24,7 +24,7 @@ if [ ${ENV} = 'stage' ]; then
 
 elif [ ${ENV} = 'prod' ]; then
 
-    docker build -t terraform-aws-sample-${ENV} -f Dockerfile .
+    docker build -t terraform-aws-sample-${ENV} -f go/Dockerfile .
 
     export AWS_PROFILE=terraform-sample
 
