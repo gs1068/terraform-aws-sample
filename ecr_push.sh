@@ -8,19 +8,19 @@ read -p 'ex) stage/prod:' ENV
 
 if [ ${ENV} = 'stage' ]; then
 
-    docker build -t terraform-aws-sample-${ENV} -f Dockerfile .
+    docker build -t terraform-aws-sample-${ENV} -f docker/go/Dockerfile .
 
     export AWS_PROFILE=terraform-sample
 
     # ecrログイン
-    aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 084477982733.dkr.ecr.ap-northeast-1.amazonaws.com
+    aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 891282500588.dkr.ecr.ap-northeast-1.amazonaws.com
 
     # tag付け
-    docker tag terraform-aws-sample-${ENV}:latest 084477982733.dkr.ecr.ap-northeast-1.amazonaws.com/terraform-aws-sample-${ENV}:latest
+    docker tag terraform-aws-sample-${ENV}:latest 891282500588.dkr.ecr.ap-northeast-1.amazonaws.com/terraform-aws-sample-${ENV}:latest
 
     # リポジトリへpush
 
-    docker push 084477982733.dkr.ecr.ap-northeast-1.amazonaws.com/terraform-aws-sample-stage
+    docker push 891282500588.dkr.ecr.ap-northeast-1.amazonaws.com/terraform-aws-sample-${ENV}
 
 elif [ ${ENV} = 'prod' ]; then
 
@@ -29,14 +29,14 @@ elif [ ${ENV} = 'prod' ]; then
     export AWS_PROFILE=terraform-sample
 
     # ecrログイン
-    aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 084477982733.dkr.ecr.ap-northeast-1.amazonaws.com
+    aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 891282500588.dkr.ecr.ap-northeast-1.amazonaws.com
 
     # tag付け
-    docker tag terraform-aws-sample-${ENV}:latest 084477982733.dkr.ecr.ap-northeast-1.amazonaws.com/terraform-aws-sample-${ENV}:latest
+    docker tag terraform-aws-sample-${ENV}:latest 891282500588.dkr.ecr.ap-northeast-1.amazonaws.com/terraform-aws-sample-${ENV}:latest
 
     # リポジトリへpush
 
-    docker push 084477982733.dkr.ecr.ap-northeast-1.amazonaws.com/terraform-aws-sample-prod
+    docker push 891282500588.dkr.ecr.ap-northeast-1.amazonaws.com/terraform-aws-sample-${ENV}
 
 else
     echo '[stage] or [prod] のAWSアカウントをPCに登録してますか？'
