@@ -41,13 +41,12 @@ $ kubectl get all -A
   - Kubernetes で実行できるアプリケーションの最小単位
 - ワークロード
   - Kubernetes で実行中のアプリケーション
-    - ワークロードリソース
-      - Deployment(ReplicaSet を管理する)
-        1. 新しい ReplicaSet を作成
-        2. 新しい ReplicaSet 上でレプリカ数（Pod 数）を徐々に増やす
-        3. 古い ReplicaSet 上のレプリカ数(Pod 数)を徐々に減らす
-        4. (2,3 を繰り返す)
-        5. 古い ReplicaSet はレプリカ数は０で保持する
+    - ワークロードリソース（Deployment(ReplicaSet を管理する))
+      1. 新しい ReplicaSet を作成
+      2. 新しい ReplicaSet 上でレプリカ数（Pod 数）を徐々に増やす
+      3. 古い ReplicaSet 上のレプリカ数(Pod 数)を徐々に減らす
+      4. (2,3 を繰り返す)
+      5. 古い ReplicaSet はレプリカ数は０で保持する
       - ReplicaSet(Pod を管理する)
         - Pod のレプリカを作成し、指定した数の Pod を維持し続けるリソース
       - StatefulSet
