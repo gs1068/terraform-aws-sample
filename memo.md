@@ -28,20 +28,22 @@ $ kubectl get all -A
 
 ## Kubernetes 構成
 
-- クラスター
+- Cluster
   - コンテナ化されたアプリケーションを実行するノードの集合体
   - クラスター内には少なくとも１つ以上のマスターノードと１つまたは複数のワーカーノードが存在する
-- ノード
+- Node
   - Kubernetes のワーカーマシン（アプリケーションを実行するマシン）
-- ワーカーノード
+- Worker Node
   - コンテナの実行ホスト
-- マスターノード
+- Master Node
   - ワーカーノードを管理するノード
 - Pod
   - Kubernetes で実行できるアプリケーションの最小単位
 - Service
   - デプロイした Pod に対してアクセスする方法を決める
-- ワークロード
+- Namespace
+  - Cluster 内を複数の環境に分ける仕組み
+- Workload
   - Kubernetes で実行中のアプリケーション
     - ワークロードリソース（Deployment(ReplicaSet を管理する))
       1. 新しい ReplicaSet を作成
@@ -49,14 +51,14 @@ $ kubectl get all -A
       3. 古い ReplicaSet 上のレプリカ数(Pod 数)を徐々に減らす
       4. (2,3 を繰り返す)
       5. 古い ReplicaSet はレプリカ数は０で保持する
-      - ReplicaSet(Pod を管理する)
-        - Pod のレプリカを作成し、指定した数の Pod を維持し続けるリソース
-      - StatefulSet
-      - DaemonSet
-        - ReplicaSet は ReplicaSet の特殊な形
-        - ReplicaSet は Kubernetes Node 上で合計で N 個の Pod を Node のリソースの状況に合わせて配置していくが、DeamonSet は各ノードに Pod を一つずつ配置するリソース。
-      - Job
-      - CronJob
+    - ReplicaSet(Pod を管理する)
+      - Pod のレプリカを作成し、指定した数の Pod を維持し続けるリソース
+    - StatefulSet
+    - DaemonSet
+      - ReplicaSet は ReplicaSet の特殊な形
+      - ReplicaSet は Kubernetes Node 上で合計で N 個の Pod を Node のリソースの状況に合わせて配置していくが、DeamonSet は各ノードに Pod を一つずつ配置するリソース。
+    - Job
+    - CronJob
 
 参考資料
 https://pages.awscloud.com/rs/112-TZM-766/images/00_AWS%E8%90%BD%E6%B0%B4%E3%81%95%E3%82%93_%E8%B3%87%E6%96%99.pdf
