@@ -39,6 +39,8 @@ $ kubectl get all -A
   - ワーカーノードを管理するノード
 - Pod
   - Kubernetes で実行できるアプリケーションの最小単位
+- Service
+  - デプロイした Pod に対してアクセスする方法を決める
 - ワークロード
   - Kubernetes で実行中のアプリケーション
     - ワークロードリソース（Deployment(ReplicaSet を管理する))
